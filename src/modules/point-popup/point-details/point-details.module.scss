@@ -1,0 +1,31 @@
+.root {
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.propList {
+  display: flex;
+  flex-direction: column;
+}
+
+.propTitle {
+  font-weight: bold;
+}
+
+.buttonRoot {
+  text-transform: none;
+  margin-top: 8px;
+}
+
+.imgContainer {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 4px;
+}

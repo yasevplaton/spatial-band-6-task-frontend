@@ -1,0 +1,32 @@
+.root {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 32px;
+  right: 16px;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.legendBlockTitle {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.pointsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pointDesc {
+  color: grey;
+  font-size: 0.8rem;
+}
+
+.pointCircle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
