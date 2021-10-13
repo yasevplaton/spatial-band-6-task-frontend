@@ -15,7 +15,7 @@ export const MarkerCollection = ({ data }) => {
         radius={3}
         pathOptions={markerStyle}
       >
-        <Popup>А может тут школку бабахнем?</Popup>
+        <Popup>А не построить ли нам тут школу?</Popup>
       </CircleMarker>
     );
   });
