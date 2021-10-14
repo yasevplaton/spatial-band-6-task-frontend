@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import {
   MAP_CENTER_DEFAULT,
@@ -6,37 +6,15 @@ import {
   TILE_SERVER_ATTRIBUTION,
   TILE_SERVER_URL,
   MIN_ZOOM_DEFAULT,
-  schoolLoadColorRange,
-  schoolRadiusRange,
 } from "config/constants";
 import { MarkerCollection } from "../../components/marker-collection";
 import { withLoading } from "../withLoading";
-import {
-  useGetPupilsCountRange,
-  useGetSchoolLoadRange,
-  useGetSchools,
-} from "../../api";
-import { createScale } from "../../utils";
+import { useSchoolData } from "./hooks";
 
 const AsyncMarkers = withLoading(MarkerCollection);
 
 export const Map = () => {
-  const { data, status } = useGetSchools();
-  const { data: pupilsCountRange } = useGetPupilsCountRange(!!data);
-  const { data: schoolLoadRange } = useGetSchoolLoadRange(!!data);
-
-  const radiusScale = useMemo(() => {
-    if (!pupilsCountRange) return;
-
-    return createScale(pupilsCountRange, schoolRadiusRange);
-  }, [pupilsCountRange]);
-
-  const colorScale = useMemo(() => {
-    if (!schoolLoadRange) return;
-
-    return createScale(schoolLoadRange, schoolLoadColorRange);
-  }, [schoolLoadRange]);
-
+  const { data, status, radiusScale, colorScale } = useSchoolData();
   return (
     <MapContainer
       center={MAP_CENTER_DEFAULT}
