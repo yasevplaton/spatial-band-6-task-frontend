@@ -6,10 +6,8 @@ export const BUILDING_COLORS = {
 };
 
 export const DEFAULT_MARKER_STYLE = {
-  radius: 8,
-  fillColor: "#0226db",
   weight: 1,
   color: "#000",
-  opacity: 0.6,
-  fillOpacity: 0.8,
+  opacity: 1,
+  fillOpacity: 1,
 };
