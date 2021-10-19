@@ -2,12 +2,19 @@ import { CircleMarker, Popup } from "react-leaflet";
 import { LatLng } from "leaflet/dist/leaflet-src.esm";
 import { DEFAULT_MARKER_STYLE } from "../../config/styles";
 
-export const MarkerCollection = ({ data, radiusScale, colorScale }) => {
+export const MarkerCollection = ({
+  data,
+  radiusScale,
+  colorScale,
+  opacity,
+}) => {
   return data.map((feature) => {
     const position = new LatLng(feature.latitude, feature.longitude);
     const markerStyle = {
       ...DEFAULT_MARKER_STYLE,
       fillColor: colorScale(feature["nagruzka"]),
+      fillOpacity: opacity,
+      opacity,
     };
 
     return (

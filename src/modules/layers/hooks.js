@@ -10,8 +10,8 @@ import {
   schoolRadiusRange,
 } from "../../config/constants";
 
-export const useSchoolData = () => {
-  const { data, status } = useGetSchools();
+export const useSchoolData = (layerVisible) => {
+  const { data, status } = useGetSchools(layerVisible);
   const { data: pupilsCountRange } = useGetPupilsCountRange(!!data);
   const { data: schoolLoadRange } = useGetSchoolLoadRange(!!data);
 

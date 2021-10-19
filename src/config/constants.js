@@ -14,3 +14,4 @@ export const days = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
 export const schoolRadiusRange = [1, 40];
 export const schoolLoadColorRange = ["white", "red"];
+export const schoolLoadTestColorRange = ["yellow", "black"];

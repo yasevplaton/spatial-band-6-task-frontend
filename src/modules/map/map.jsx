@@ -7,14 +7,35 @@ import {
   TILE_SERVER_URL,
   MIN_ZOOM_DEFAULT,
 } from "config/constants";
-import { MarkerCollection } from "../../components/marker-collection";
+import { SchoolsLayer } from "../layers";
+import { useGetGrid } from "../../api/grid";
+import { GeoJSON } from "react-leaflet";
 import { withLoading } from "../withLoading";
-import { useSchoolData } from "./hooks";
+import { useSelector } from "react-redux";
+import {
+  getGridStyleField,
+  getSelectedCategory,
+} from "../../root-slice/root-selectors";
 
-const AsyncMarkers = withLoading(MarkerCollection);
+const AsyncGeoJSON = withLoading(GeoJSON);
 
 export const Map = () => {
-  const { data, status, radiusScale, colorScale } = useSchoolData();
+  const selectedCategory = useSelector(getSelectedCategory);
+  const curGridStyleField = useSelector(getGridStyleField);
+
+  const { data, status } = useGetGrid(!!selectedCategory);
+
+  const gridStyle = (feature) => {
+    const { properties } = feature;
+    const fillColor = properties.colors[curGridStyleField];
+    return {
+      fillColor,
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 1,
+    };
+  };
+
   return (
     <MapContainer
       center={MAP_CENTER_DEFAULT}
@@ -22,12 +43,8 @@ export const Map = () => {
       minZoom={MIN_ZOOM_DEFAULT}
     >
       <TileLayer attribution={TILE_SERVER_ATTRIBUTION} url={TILE_SERVER_URL} />
-      <AsyncMarkers
-        data={data}
-        status={status}
-        radiusScale={radiusScale}
-        colorScale={colorScale}
-      />
+      <SchoolsLayer />
+      <AsyncGeoJSON data={data} status={status} style={gridStyle} />
     </MapContainer>
   );
 };

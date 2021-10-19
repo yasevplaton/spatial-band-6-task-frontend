@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "https://lud8uz.deta.dev";
+const API_URL = "https://social-infrastructure.deta.dev";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,

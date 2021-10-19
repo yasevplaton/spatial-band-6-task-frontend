@@ -4,6 +4,8 @@ import { StylesProvider } from "@mui/styles";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "index.scss";
 import App from "App";
+import { store } from "./store";
+import { Provider } from "react-redux";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,7 +19,9 @@ ReactDOM.render(
   <React.StrictMode>
     <StylesProvider injectFirst>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </QueryClientProvider>
     </StylesProvider>
   </React.StrictMode>,
