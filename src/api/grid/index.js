@@ -1,7 +1,7 @@
 import axios from "../../config/axios";
 import { useQuery } from "react-query";
 
-const URL = "http://geoapi.social.ru.com/api";
+const URL = "https://geoapi.social.ru.com/api";
 
 const getGrid = async () => {
   const data = await axios.get(
