@@ -3,13 +3,17 @@ import { useQuery } from "react-query";
 
 const URL = "https://geoapi.social.ru.com/api";
 
-const getGrid = async () => {
+const getGrid = async (mapExtent) => {
+  const { lat_min, lat_max, lon_min, lon_max } = mapExtent;
   const data = await axios.get(
-    `${URL}/poly/?lat_min=37.590811&lat_max=37.652609&lon_min=55.743476%20&lon_max=55.763304`
+    `${URL}/poly/?lat_min=${lon_min}&lat_max=${lon_max}&lon_min=${lat_min}&lon_max=${lat_max}`
   );
   return data;
 };
 
-export const useGetGrid = (enabled) => {
-  return useQuery(["grid"], () => getGrid(), { enabled });
+export const useGetGrid = (mapExtent, enabled) => {
+  return useQuery(["grid", mapExtent], () => getGrid(mapExtent), {
+    enabled,
+    keepPreviousData: true,
+  });
 };
