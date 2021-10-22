@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMapEvent } from "react-leaflet";
+import { Pane, useMapEvent } from "react-leaflet";
 import { useGetGrid } from "../../api/grid";
 import { useSelector } from "react-redux";
 import {
@@ -24,12 +24,16 @@ export const GridLayer = () => {
     return {
       fillColor,
       weight: 1,
-      opacity: 1,
-      fillOpacity: 1,
+      opacity: 0,
+      fillOpacity: 0.8,
     };
   };
 
   if (!data) return null;
 
-  return <GeoJSON data={data} style={gridStyle} zIndex={-1000} />;
+  return (
+    <Pane name="grid" style={{ zIndex: 300 }}>
+      <GeoJSON data={data} style={gridStyle} />
+    </Pane>
+  );
 };
