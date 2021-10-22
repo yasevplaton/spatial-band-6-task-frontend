@@ -2,7 +2,6 @@ import { useSchoolData } from "./hooks";
 import React from "react";
 import { withLoading } from "../withLoading";
 import { MarkerCollection } from "../../components";
-import { LayerGroup } from "react-leaflet";
 import { useSelector } from "react-redux";
 import { getSelectedCategory } from "../../root-slice/root-selectors";
 
@@ -14,13 +13,11 @@ export const SchoolsLayer = () => {
     !!selectedCategory
   );
   return (
-    <LayerGroup>
-      <AsyncMarkers
-        data={data}
-        status={status}
-        radiusScale={radiusScale}
-        colorScale={colorScale}
-      />
-    </LayerGroup>
+    <AsyncMarkers
+      data={data}
+      status={status}
+      radiusScale={radiusScale}
+      colorScale={colorScale}
+    />
   );
 };
