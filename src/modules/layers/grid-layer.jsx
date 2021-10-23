@@ -8,6 +8,15 @@ import {
 } from "../../root-slice/root-selectors";
 import { getMapExtent } from "./utils";
 import { GeoJSON } from "../../components/geojson";
+import { withLoading } from "../withLoading";
+
+const GridPane = ({ data, gridStyle }) => (
+  <Pane name="grid" style={{ zIndex: 300 }}>
+    <GeoJSON data={data} style={gridStyle} />
+  </Pane>
+);
+
+const AsyncGrid = withLoading(GridPane);
 
 export const GridLayer = () => {
   const map = useMapEvent("moveend", () => setMapExtent(getMapExtent(map)));
@@ -16,7 +25,7 @@ export const GridLayer = () => {
   const selectedCategory = useSelector(getSelectedCategory);
   const curGridStyleField = useSelector(getGridStyleField);
 
-  const { data } = useGetGrid(mapExtent, !!selectedCategory);
+  const { data, status } = useGetGrid(mapExtent, !!selectedCategory);
 
   const gridStyle = (feature) => {
     const { properties } = feature;
@@ -29,11 +38,7 @@ export const GridLayer = () => {
     };
   };
 
-  if (!data) return null;
-
   return (
-    <Pane name="grid" style={{ zIndex: 300 }}>
-      <GeoJSON data={data} style={gridStyle} />
-    </Pane>
+    <AsyncGrid data={data} status={status} gridStyle={gridStyle} key="grid" />
   );
 };

@@ -12,6 +12,5 @@ export const QUERY_KEYS = {
 
 export const days = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
-export const schoolRadiusRange = [1, 40];
-export const schoolLoadColorRange = ["white", "red"];
-export const schoolLoadTestColorRange = ["yellow", "black"];
+export const schoolRadiusRange = [5, 5];
+export const schoolLoadColorRange = ["green", "green", "orange", "red"];

@@ -3,5 +3,3 @@ const schoolsLayerConfig = {
   title: "Школы",
   visible: false,
 };
-
-export const layersConfig = [schoolsLayerConfig];

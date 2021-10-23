@@ -1,7 +1,11 @@
 import { scaleLinear } from "d3-scale";
 
-export const getDataRange = (values) => {
+export const getRadiusRange = (values) => {
   return [Math.min(...values), Math.max(...values)];
+};
+
+export const getSchoolLoadRange = (values) => {
+  return [Math.min(...values), 1, 1.000000000001, Math.max(...values)];
 };
 
 export const getObjArrValues = (objArr, key) => {

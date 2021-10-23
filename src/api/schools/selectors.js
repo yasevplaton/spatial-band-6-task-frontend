@@ -1,11 +1,17 @@
-import { getDataRange, getObjArrValues } from "../../utils";
+import {
+  getObjArrValues,
+  getRadiusRange,
+  getSchoolLoadRange as getLoadRange,
+} from "../../utils";
 
 export const getPupilsCountRange = (data) => {
-  const values = getObjArrValues(data, "pupils_cnt");
-  return getDataRange(values);
+  const schoolsProps = data.features.map((f) => f.properties);
+  const values = getObjArrValues(schoolsProps, "pupils_cnt");
+  return getRadiusRange(values);
 };
 
 export const getShoolLoadRange = (data) => {
-  const values = getObjArrValues(data, "nagruzka");
-  return getDataRange(values);
+  const schoolsProps = data.features.map((f) => f.properties);
+  const values = getObjArrValues(schoolsProps, "nagruzka");
+  return getLoadRange(values);
 };

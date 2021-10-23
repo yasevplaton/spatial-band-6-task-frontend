@@ -2,10 +2,8 @@ import axios from "../../config/axios";
 import { useQuery } from "react-query";
 import GeoJSON from "geojson";
 
-const URL = "https://geoapi.social.ru.com/api";
-
 const getGrid = async () => {
-  const data = await axios.get(`${URL}/poly_new/`);
+  const data = await axios.get(`/poly_new/`);
   const parsedData = data.map((item) => {
     const { polygon } = item;
     let coords = polygon.replace("SRID=4326;POLYGON ((", "");
