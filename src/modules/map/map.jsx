@@ -8,8 +8,16 @@ import {
   MIN_ZOOM_DEFAULT,
 } from "config/constants";
 import { SchoolsLayer, GridLayer } from "../layers";
+import { useSelector } from "react-redux";
+import {
+  getSelectedCategory,
+  getVisible,
+} from "../../root-slice/root-selectors";
 
 export const Map = () => {
+  const category = useSelector(getSelectedCategory);
+  const schoolsVisible = useSelector(getVisible("schools"));
+  const gridVisible = useSelector(getVisible("grid"));
   return (
     <MapContainer
       center={MAP_CENTER_DEFAULT}
@@ -17,8 +25,9 @@ export const Map = () => {
       minZoom={MIN_ZOOM_DEFAULT}
     >
       <TileLayer attribution={TILE_SERVER_ATTRIBUTION} url={TILE_SERVER_URL} />
-      <GridLayer />
-      <SchoolsLayer />
+
+      {category && gridVisible && <GridLayer />}
+      {category && schoolsVisible && <SchoolsLayer />}
     </MapContainer>
   );
 };

@@ -2,7 +2,7 @@ import { useSchoolData } from "./hooks";
 import React, { useCallback } from "react";
 import { withLoading } from "../withLoading";
 import { useSelector } from "react-redux";
-import { getSelectedCategory } from "../../root-slice/root-selectors";
+import { getSelectedCategory, getYear } from "../../root-slice/root-selectors";
 import { GeoJSON } from "../../components/geojson";
 import * as L from "leaflet";
 import { DEFAULT_MARKER_STYLE } from "../../config/styles";
@@ -11,6 +11,7 @@ const AsyncSchools = withLoading(GeoJSON);
 
 export const SchoolsLayer = () => {
   const selectedCategory = useSelector(getSelectedCategory);
+  const year = useSelector(getYear);
   const { data, status, radiusScale, colorScale } = useSchoolData(
     !!selectedCategory
   );
@@ -19,11 +20,13 @@ export const SchoolsLayer = () => {
     (feature, latlng) => {
       return L.circleMarker(latlng, {
         ...DEFAULT_MARKER_STYLE,
-        fillColor: colorScale(feature.properties["nagruzka"]),
+        fillColor: colorScale(
+          feature.properties[year === 2021 ? "nagruzka" : "nagruzka_2025year"]
+        ),
         radius: radiusScale(feature.properties["pupils_cnt"]),
       });
     },
-    [colorScale, radiusScale]
+    [colorScale, radiusScale, year]
   );
 
   const onEachFeature = useCallback((feature, layer) => {

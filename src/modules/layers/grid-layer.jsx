@@ -3,6 +3,7 @@ import { Pane, useMapEvent } from "react-leaflet";
 import { useGetGrid } from "../../api/grid";
 import { useSelector } from "react-redux";
 import {
+  get800mFlag,
   getGridStyleField,
   getSelectedCategory,
 } from "../../root-slice/root-selectors";
@@ -24,6 +25,7 @@ export const GridLayer = () => {
 
   const selectedCategory = useSelector(getSelectedCategory);
   const curGridStyleField = useSelector(getGridStyleField);
+  const flag800m = useSelector(get800mFlag);
 
   const { data, status } = useGetGrid(mapExtent, !!selectedCategory);
 
@@ -34,7 +36,7 @@ export const GridLayer = () => {
       fillColor,
       weight: 1,
       opacity: 0,
-      fillOpacity: 0.8,
+      fillOpacity: flag800m && !feature.properties.school ? 0 : 0.8,
     };
   };
 

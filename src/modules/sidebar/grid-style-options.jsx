@@ -1,10 +1,17 @@
-import { Button } from "@mui/material";
+import { Button, Checkbox } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { getGridStyleField } from "../../root-slice/root-selectors";
+import {
+  getGridStyleField,
+  getVisible,
+  getYear,
+} from "../../root-slice/root-selectors";
 import styles from "./sidebar.module.scss";
 import { useCallback } from "react";
 import { setGridStyleField } from "../../root-slice";
+import { gridStyleFields } from "../../config/constants";
+import { StyledFormControlLabel } from "../../components/form-controls";
+import { toggleVisibility } from "../../root-slice/root-slice";
 
 const StyledButton = styled(Button)(() => ({
   textTransform: "none",
@@ -12,47 +19,48 @@ const StyledButton = styled(Button)(() => ({
   color: "black",
 }));
 
-const gridStyleFields = [
-  {
-    fieldName: "live_humans_2021",
-    label: "Численность проживающего населения",
-  },
-  {
-    fieldName: "work_humans",
-    label: "Численность работающего населения",
-  },
-  {
-    fieldName: "optima",
-    label: "Оптимальность размещения новых объектов",
-  },
-  {
-    fieldName: "potreb_2021",
-    label: "Потребность населения в дополнительных местах",
-  },
-];
-
 export const GridStyleOptions = () => {
   const curGridStyleField = useSelector(getGridStyleField);
+  const gridVisible = useSelector(getVisible("grid"));
+  const year = useSelector(getYear);
   const dispatch = useDispatch();
 
   const toggleField = useCallback(
     (e) => {
-      dispatch(setGridStyleField(e.target.name));
+      const fieldInfo = gridStyleFields[+e.target.name];
+
+      dispatch(
+        setGridStyleField({
+          fieldName2021: fieldInfo.fieldName2021,
+          fieldName2025: fieldInfo.fieldName2025,
+        })
+      );
     },
     [dispatch]
   );
 
+  const changeGridVisibility = useCallback(() => {
+    dispatch(toggleVisibility("grid"));
+  }, [dispatch]);
+
   return (
     <div>
-      {gridStyleFields.map((item) => {
-        const isActive = curGridStyleField === item.fieldName;
+      <StyledFormControlLabel
+        control={
+          <Checkbox checked={gridVisible} onChange={changeGridVisibility} />
+        }
+        label="Тепловая карта"
+      />
+      {gridStyleFields.map((item, index) => {
+        const fieldName = year === 2025 ? "fieldName2025" : "fieldName2021";
+        const isActive = curGridStyleField === item[fieldName];
         return (
           <StyledButton
             variant="text"
-            name={item.fieldName}
+            name={index}
             className={isActive && styles.activeOption}
             onClick={toggleField}
-            key={item.fieldName}
+            key={index}
           >
             {item.label}
           </StyledButton>

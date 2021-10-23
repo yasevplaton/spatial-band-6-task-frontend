@@ -7,10 +7,18 @@ import { createSlice } from "@reduxjs/toolkit";
 // potreb_2025
 // work_humans
 
+// schools = nagruzka_2025
+
 const initialState = {
   selectedCategory: "",
-  gridStyleField: "live_humans_2021",
-  schoolsVisible: true,
+  gridStyleField: {
+    fieldName2021: "live_humans_2021",
+    fieldName2025: "live_humans_2025",
+  },
+  visible: {
+    schools: true,
+    grid: true,
+  },
   hide800mGrid: false,
   year: 2021,
 };
@@ -30,9 +38,31 @@ export const rootSlice = createSlice({
 
       state.gridStyleField = payload;
     },
+
+    setYear: (state, action) => {
+      const { payload } = action;
+
+      state.year = payload;
+    },
+
+    toggleVisibility: (state, action) => {
+      const { payload } = action;
+
+      state.visible[payload] = !state.visible[payload];
+    },
+
+    toggle800m: (state) => {
+      state.hide800mGrid = !state.hide800mGrid;
+    },
   },
 });
 
-export const { setCategory, setGridStyleField } = rootSlice.actions;
+export const {
+  setCategory,
+  setGridStyleField,
+  setYear,
+  toggleVisibility,
+  toggle800m,
+} = rootSlice.actions;
 
 export const rootReducer = rootSlice.reducer;
