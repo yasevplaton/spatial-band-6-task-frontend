@@ -4,7 +4,7 @@ const initialState = {
   selectedCategory: "",
   gridStyleField: {
     fieldName2021: "live_humans_2021",
-    fieldName2025: "live_humans_2025",
+    fieldName2025: "live_humans_2021",
   },
   visible: {
     schools: true,

@@ -56,9 +56,7 @@ export const Sidebar = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.label}>
-        Выберите категорию социального назначения
-      </div>
+      <div className={styles.label}>Выберите категорию объектов</div>
       <FormControl sx={{ m: 1, minWidth: 200, marginLeft: 0 }}>
         <InputLabel id="demo-simple-select-autowidth-label">
           Категория
@@ -100,7 +98,7 @@ export const Sidebar = () => {
           >
             <Switch checked={flag800m} onChange={change800mFlag} />
             <div style={{ fontSize: "12px" }}>
-              Скрыть участки за пределами 800 м от школы
+              Показать только участки за пределами 800 м от школы
             </div>
           </div>
           <div style={{ paddingTop: "2rem" }}>

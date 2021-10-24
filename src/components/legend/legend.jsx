@@ -20,7 +20,7 @@ const gridLegendConfig = {
   potreb_2025: {
     label: "Потребность населения в дополнительных местах",
   },
-  optima: { label: "Оптимальность размещения новых объектов" },
+  optima: { label: "Потенциал размещения новых объектов" },
 };
 
 export const Legend = () => {

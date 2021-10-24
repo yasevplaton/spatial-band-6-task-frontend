@@ -37,7 +37,8 @@ export const GridLayer = () => {
         fillColor,
         weight: 1,
         opacity: 0,
-        fillOpacity: flag800m && !feature.properties.school ? 0 : 0.8,
+        fillOpacity: flag800m && feature.properties.school ? 0 : 0.8,
+        interactive: false,
       };
     },
     [curGridStyleField, flag800m]
