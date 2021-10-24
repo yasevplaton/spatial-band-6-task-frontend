@@ -1,15 +1,36 @@
 import React from "react";
-import { PointDetails } from "./point-details";
-import { PointValues } from "./point-values";
+import { Grid } from "@mui/material";
 import styles from "./point-popup.module.scss";
-import { pointDetailsConfig } from "config/point-popup";
 
-export const PointPopup = ({ feature }) => {
-  const { point_id: pointId } = feature;
+export const PointPopup = ({ feature, config }) => {
+  const { properties: props } = feature;
+
   return (
-    <div className={styles.wrapper}>
-      <PointDetails pointId={pointId} config={pointDetailsConfig} />
-      <PointValues pointId={pointId} />
+    <div className={styles.container}>
+      {config.title && props[config.title] && (
+        <div className={styles.title}>{props[config.title]}</div>
+      )}
+      {config.rows.map((row) => {
+        if (props[row.fieldName] === "nan") {
+          return null;
+        }
+        return (
+          <Grid container spacing={1} key={row.fieldName}>
+            <Grid item xs={6} className={styles.propName}>
+              {row.label}
+            </Grid>
+            <Grid item xs={6}>
+              {row.type === "link" ? (
+                <a href={`https://${props[row.fieldName]}`}>
+                  {props[row.fieldName]}
+                </a>
+              ) : (
+                props[row.fieldName]
+              )}
+            </Grid>
+          </Grid>
+        );
+      })}
     </div>
   );
 };

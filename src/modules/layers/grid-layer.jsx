@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Pane, useMapEvent } from "react-leaflet";
 import { useGetGrid } from "../../api/grid";
 import { useSelector } from "react-redux";
@@ -12,7 +12,7 @@ import { GeoJSON } from "../../components/geojson";
 import { withLoading } from "../withLoading";
 
 const GridPane = ({ data, gridStyle }) => (
-  <Pane name="grid" style={{ zIndex: 300 }}>
+  <Pane name="grid" style={{ zIndex: 350 }}>
     <GeoJSON data={data} style={gridStyle} />
   </Pane>
 );
@@ -29,16 +29,19 @@ export const GridLayer = () => {
 
   const { data, status } = useGetGrid(mapExtent, !!selectedCategory);
 
-  const gridStyle = (feature) => {
-    const { properties } = feature;
-    const fillColor = properties.colors[curGridStyleField];
-    return {
-      fillColor,
-      weight: 1,
-      opacity: 0,
-      fillOpacity: flag800m && !feature.properties.school ? 0 : 0.8,
-    };
-  };
+  const gridStyle = useCallback(
+    (feature) => {
+      const { properties } = feature;
+      const fillColor = properties.colors[curGridStyleField];
+      return {
+        fillColor,
+        weight: 1,
+        opacity: 0,
+        fillOpacity: flag800m && !feature.properties.school ? 0 : 0.8,
+      };
+    },
+    [curGridStyleField, flag800m]
+  );
 
   return (
     <AsyncGrid data={data} status={status} gridStyle={gridStyle} key="grid" />

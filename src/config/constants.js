@@ -13,7 +13,18 @@ export const QUERY_KEYS = {
 export const days = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
 export const schoolRadiusRange = [5, 5];
-export const schoolLoadColorRange = ["green", "green", "orange", "red"];
+
+export const schoolLoadColors = {
+  low: "green",
+  middle: "orange",
+  high: "red",
+};
+export const schoolLoadColorRange = [
+  schoolLoadColors.low,
+  schoolLoadColors.low,
+  schoolLoadColors.middle,
+  schoolLoadColors.high,
+];
 
 export const gridStyleFields = [
   {

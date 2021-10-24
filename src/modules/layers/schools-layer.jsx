@@ -6,6 +6,9 @@ import { getSelectedCategory, getYear } from "../../root-slice/root-selectors";
 import { GeoJSON } from "../../components/geojson";
 import * as L from "leaflet";
 import { DEFAULT_MARKER_STYLE } from "../../config/styles";
+import * as ReactDOMServer from "react-dom/server";
+import { PointPopup } from "../point-popup";
+import { schoolFeatureInfo } from "../../config/popup";
 
 const AsyncSchools = withLoading(GeoJSON);
 
@@ -30,12 +33,9 @@ export const SchoolsLayer = () => {
   );
 
   const onEachFeature = useCallback((feature, layer) => {
-    const popupContent = `
-        <div>
-            <p>${feature.properties.nagruzka}</p>
-            <p>${feature.properties.pupils_cnt}</p>
-        </div>
-            `;
+    const popupContent = ReactDOMServer.renderToString(
+      <PointPopup feature={feature} config={schoolFeatureInfo} />
+    );
     layer.bindPopup(popupContent);
   }, []);
 

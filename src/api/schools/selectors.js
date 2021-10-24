@@ -10,8 +10,8 @@ export const getPupilsCountRange = (data) => {
   return getRadiusRange(values);
 };
 
-export const getShoolLoadRange = (data) => {
+export const getShoolLoadRange = (data, propName) => {
   const schoolsProps = data.features.map((f) => f.properties);
-  const values = getObjArrValues(schoolsProps, "nagruzka");
+  const values = getObjArrValues(schoolsProps, propName);
   return getLoadRange(values);
 };

@@ -28,8 +28,20 @@ const getGrid = async () => {
   return geojson;
 };
 
+const getGridColors = async () => {
+  const data = await axios.get(`/poly_new/colors_png`);
+  return data;
+};
+
 export const useGetGrid = (mapExtent, enabled) => {
   return useQuery(["grid"], () => getGrid(), {
+    enabled,
+    keepPreviousData: true,
+  });
+};
+
+export const useGetGridColors = (enabled = true) => {
+  return useQuery(["grid-colors"], () => getGridColors(), {
     enabled,
     keepPreviousData: true,
   });

@@ -1,14 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// live_humans_2021
-// live_humans_2025
-// optima
-// potreb_2021
-// potreb_2025
-// work_humans
-
-// schools = nagruzka_2025
-
 const initialState = {
   selectedCategory: "",
   gridStyleField: {

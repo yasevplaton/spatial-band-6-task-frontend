@@ -3,6 +3,8 @@ import { QUERY_KEYS } from "config/constants";
 import { useCallback } from "react";
 import { getSchools } from "./api";
 import { getPupilsCountRange, getShoolLoadRange } from "./selectors";
+import { useSelector } from "react-redux";
+import { getYear } from "../../root-slice/root-selectors";
 
 export const useGetSchools = (enabled, select) => {
   const queryFn = useCallback(() => getSchools(), []);
@@ -17,5 +19,8 @@ export const useGetPupilsCountRange = (enabled) => {
 };
 
 export const useGetSchoolLoadRange = (enabled) => {
-  return useGetSchools(enabled, getShoolLoadRange);
+  const year = useSelector(getYear);
+  return useGetSchools(enabled, (data) =>
+    getShoolLoadRange(data, year === 2025 ? "nagruzka_2025year" : "nagruzka")
+  );
 };
