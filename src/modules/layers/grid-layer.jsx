@@ -1,13 +1,13 @@
-import React, { useCallback, useState } from "react";
-import { Pane, useMapEvent } from "react-leaflet";
+import React, { useCallback } from "react";
+import { Pane } from "react-leaflet";
 import { useGetGrid } from "../../api/grid";
 import { useSelector } from "react-redux";
 import {
   get800mFlag,
   getGridStyleField,
+  getMinOptimaValue,
   getSelectedCategory,
 } from "../../root-slice/root-selectors";
-import { getMapExtent } from "./utils";
 import { GeoJSON } from "../../components/geojson";
 import { withLoading } from "../withLoading";
 
@@ -20,28 +20,34 @@ const GridPane = ({ data, gridStyle }) => (
 const AsyncGrid = withLoading(GridPane);
 
 export const GridLayer = () => {
-  const map = useMapEvent("moveend", () => setMapExtent(getMapExtent(map)));
-  const [mapExtent, setMapExtent] = useState(getMapExtent(map));
-
   const selectedCategory = useSelector(getSelectedCategory);
   const curGridStyleField = useSelector(getGridStyleField);
   const flag800m = useSelector(get800mFlag);
+  const minOptimaValue = useSelector(getMinOptimaValue);
 
-  const { data, status } = useGetGrid(mapExtent, !!selectedCategory);
+  const { data, status } = useGetGrid(!!selectedCategory);
 
   const gridStyle = useCallback(
     (feature) => {
       const { properties } = feature;
       const fillColor = properties.colors[curGridStyleField];
+      const isNearSchool = feature.properties.school;
+      const fillOpacity = () => {
+        const showOnlyFarFromSchool = flag800m && isNearSchool;
+        return showOnlyFarFromSchool ||
+          feature.properties.optima < minOptimaValue
+          ? 0
+          : 0.8;
+      };
       return {
         fillColor,
         weight: 1,
         opacity: 0,
-        fillOpacity: flag800m && feature.properties.school ? 0 : 0.8,
+        fillOpacity: fillOpacity(),
         interactive: false,
       };
     },
-    [curGridStyleField, flag800m]
+    [curGridStyleField, flag800m, minOptimaValue]
   );
 
   return (

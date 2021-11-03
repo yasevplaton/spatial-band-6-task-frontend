@@ -31,3 +31,8 @@ export const get800mFlag = createSelector(
   getRootState,
   (state) => state.hide800mGrid
 );
+
+export const getMinOptimaValue = createSelector(
+  getRootState,
+  (state) => state.minOptimaValue
+);

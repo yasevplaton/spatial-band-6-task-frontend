@@ -22,10 +22,8 @@ export const SliderComponent = ({
         step={step}
         marks={marks}
         onChange={onChange}
-        trackStyle={{
-          background: "none",
-        }}
         disabled={disabled}
+        startPoint={max}
       />
     </div>
   );

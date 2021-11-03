@@ -1,6 +1,6 @@
 import { scaleLinear } from "d3-scale";
 
-export const getRadiusRange = (values) => {
+export const getDataRange = (values) => {
   return [Math.min(...values), Math.max(...values)];
 };
 

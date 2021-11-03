@@ -12,6 +12,7 @@ const initialState = {
   },
   hide800mGrid: false,
   year: 2021,
+  minOptimaValue: 0,
 };
 
 export const rootSlice = createSlice({
@@ -36,6 +37,12 @@ export const rootSlice = createSlice({
       state.year = payload;
     },
 
+    setMinOptimaValue: (state, action) => {
+      const { payload } = action;
+
+      state.minOptimaValue = payload;
+    },
+
     toggleVisibility: (state, action) => {
       const { payload } = action;
 
@@ -54,6 +61,7 @@ export const {
   setYear,
   toggleVisibility,
   toggle800m,
+  setMinOptimaValue,
 } = rootSlice.actions;
 
 export const rootReducer = rootSlice.reducer;
