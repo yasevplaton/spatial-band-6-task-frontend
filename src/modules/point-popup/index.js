@@ -1,1 +1,1 @@
-export { PointPopup } from "./point-popup";
+export { Popup } from "./popup";

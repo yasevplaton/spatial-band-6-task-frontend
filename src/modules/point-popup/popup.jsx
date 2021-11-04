@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import styles from "./point-popup.module.scss";
+import styles from "./popup.module.scss";
 
-export const PointPopup = ({ feature, config }) => {
+export const Popup = ({ feature, config }) => {
   const { properties: props } = feature;
 
   return (
@@ -24,7 +24,7 @@ export const PointPopup = ({ feature, config }) => {
             <Grid item xs={6} className={styles.propName}>
               {row.label}
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6} className={styles.propValueCol}>
               {row.type === "link" ? (
                 <a href={`https://${props[row.fieldName]}`}>
                   {props[row.fieldName]}

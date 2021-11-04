@@ -19,7 +19,7 @@ export const schoolFeatureInfo = {
     },
     {
       fieldName: "rating",
-      label: "Рейтинг",
+      label: "Рейтинг, усл. ед.",
     },
     {
       fieldName: "nagruzka",
@@ -46,27 +46,27 @@ export const gridFeatureInfo = {
   rows: [
     {
       fieldName: "live_humans_2021",
-      label: "Число проживающих (2021)",
+      label: "Число проживающих (2021), чел",
     },
     {
       fieldName: "live_humans_2025",
-      label: "Число проживающих (2025)",
+      label: "Число проживающих (2025), чел",
     },
     {
       fieldName: "work_humans",
-      label: "Число работающих",
+      label: "Число работающих, чел",
     },
     {
       fieldName: "potreb_2021",
-      label: "Потребность в дополнительных местах (2021)",
+      label: "Потребность в дополнительных местах (2021), усл. ед.",
     },
     {
-      fieldName: "potreb_2021",
-      label: "Потребность в дополнительных местах (2025)",
+      fieldName: "potreb_2025",
+      label: "Потребность в дополнительных местах (2025), усл. ед.",
     },
     {
       fieldName: "optima",
-      label: "Оптимальность размещения новых объектов",
+      label: "Оптимальность размещения новых объектов, усл. ед.",
     },
   ],
 };

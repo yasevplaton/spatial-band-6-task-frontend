@@ -34,6 +34,11 @@ const getGridColors = async () => {
   return data;
 };
 
+const getGridStat = async () => {
+  const data = await axios.get(`/poly_new/filters`);
+  return data;
+};
+
 export const useGetGrid = (enabled, select) => {
   return useQuery(["grid"], () => getGrid(), {
     enabled,
@@ -54,4 +59,8 @@ export const useGetOptimaRange = (enabled = true) => {
     const values = data.features.map((f) => f.properties.optima);
     return getDataRange(values);
   });
+};
+
+export const useGetGridStat = (enabled = true) => {
+  return useQuery(["grid-stat"], () => getGridStat(), { enabled });
 };

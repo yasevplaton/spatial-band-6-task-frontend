@@ -1,5 +1,5 @@
-export const MAP_CENTER_DEFAULT = [55.733417, 37.618389];
-export const MAP_ZOOM_DEFAULT = 15;
+export const MAP_CENTER_DEFAULT = [55.7558, 37.6173];
+export const MAP_ZOOM_DEFAULT = 13;
 export const MIN_ZOOM_DEFAULT = 10;
 export const TILE_SERVER_URL =
   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -29,7 +29,7 @@ export const schoolLoadColorRange = [
 export const gridStyleFields = [
   {
     fieldName2021: "live_humans_2021",
-    fieldName2025: "live_humans_2021",
+    fieldName2025: "live_humans_2025",
     label: "Численность проживающего населения",
   },
   {
