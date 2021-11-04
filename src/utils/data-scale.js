@@ -5,7 +5,7 @@ export const getDataRange = (values) => {
 };
 
 export const getSchoolLoadRange = (values) => {
-  return [Math.min(...values), 1, 1.000000000001, Math.max(...values)];
+  return [Math.min(...values), 100, 100.000000000001, Math.max(...values)];
 };
 
 export const getObjArrValues = (objArr, key) => {

@@ -15,15 +15,19 @@ export const schoolFeatureInfo = {
     },
     {
       fieldName: "pupils_cnt",
-      label: "Число учащихся",
+      label: "Число учащихся, чел.",
+    },
+    {
+      fieldName: "rating",
+      label: "Рейтинг",
     },
     {
       fieldName: "nagruzka",
-      label: "Нагрузка (2021)",
+      label: "Нагрузка (2021), %",
     },
     {
       fieldName: "nagruzka_2025year",
-      label: "Нагрузка (2025)",
+      label: "Нагрузка (2025), %",
     },
     {
       fieldName: "email",

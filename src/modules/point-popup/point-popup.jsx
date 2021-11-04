@@ -10,12 +10,17 @@ export const PointPopup = ({ feature, config }) => {
       {config.title && props[config.title] && (
         <div className={styles.title}>{props[config.title]}</div>
       )}
-      {config.rows.map((row) => {
+      {config.rows.map((row, index) => {
         if (props[row.fieldName] === "nan") {
           return null;
         }
         return (
-          <Grid container spacing={1} key={row.fieldName}>
+          <Grid
+            container
+            key={row.fieldName}
+            className={styles.row}
+            style={{ backgroundColor: index % 2 === 0 ? "white" : "#ecebeb" }}
+          >
             <Grid item xs={6} className={styles.propName}>
               {row.label}
             </Grid>
