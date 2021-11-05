@@ -19,7 +19,7 @@ export const schoolFeatureInfo = {
     },
     {
       fieldName: "rating",
-      label: "Рейтинг, усл. ед.",
+      label: "Рейтинг (по данным Яндекса)",
     },
     {
       fieldName: "nagruzka",

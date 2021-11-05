@@ -6,19 +6,19 @@ import { getPupilsCountRange, getShoolLoadRange } from "./selectors";
 import { useSelector } from "react-redux";
 import { getYear } from "../../root-slice/root-selectors";
 
-export const useGetSchools = (enabled, select) => {
+export const useGetSchools = (enabled = true, select) => {
   const queryFn = useCallback(() => getSchools(), []);
   return useQuery(QUERY_KEYS.SCHOOLS, queryFn, {
-    enabled: enabled !== undefined ? enabled : true,
+    enabled,
     select,
   });
 };
 
-export const useGetPupilsCountRange = (enabled) => {
+export const useGetPupilsCountRange = (enabled = true) => {
   return useGetSchools(enabled, getPupilsCountRange);
 };
 
-export const useGetSchoolLoadRange = (enabled) => {
+export const useGetSchoolLoadRange = (enabled = true) => {
   const year = useSelector(getYear);
   return useGetSchools(enabled, (data) =>
     getShoolLoadRange(data, year === 2025 ? "nagruzka_2025year" : "nagruzka")
