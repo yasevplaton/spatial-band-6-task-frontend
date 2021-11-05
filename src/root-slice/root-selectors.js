@@ -16,14 +16,6 @@ export const getGridStyleField = createSelector(
     state.gridStyleField[year === 2025 ? "fieldName2025" : "fieldName2021"]
 );
 
-export const hasGridStyleFieldTimestamp = createSelector(
-  getRootState,
-  (state) => {
-    const { fieldName2021, fieldName2025 } = state.gridStyleField;
-    return fieldName2021 !== fieldName2025;
-  }
-);
-
 export const getVisible = (layerId) =>
   createSelector(getRootState, (state) => state.visible[layerId]);
 

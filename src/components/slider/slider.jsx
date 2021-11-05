@@ -10,7 +10,7 @@ export const SliderComponent = ({
   step,
   marks,
   onChange,
-  disabled,
+  trackStyle = {},
 }) => {
   return (
     <div className={styles.container}>
@@ -22,8 +22,8 @@ export const SliderComponent = ({
         step={step}
         marks={marks}
         onChange={onChange}
-        disabled={disabled}
         startPoint={max}
+        trackStyle={trackStyle}
       />
     </div>
   );

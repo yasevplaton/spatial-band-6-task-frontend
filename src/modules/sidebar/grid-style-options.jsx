@@ -17,6 +17,7 @@ const StyledButton = styled(Button)(() => ({
   textTransform: "none",
   textAlign: "left",
   color: "black",
+  fontSize: "13px",
 }));
 
 export const GridStyleOptions = () => {
@@ -51,21 +52,23 @@ export const GridStyleOptions = () => {
         }
         label="Тепловая карта"
       />
-      {gridStyleFields.map((item, index) => {
-        const fieldName = year === 2025 ? "fieldName2025" : "fieldName2021";
-        const isActive = curGridStyleField === item[fieldName];
-        return (
-          <StyledButton
-            variant="text"
-            name={index}
-            className={isActive && styles.activeOption}
-            onClick={toggleField}
-            key={index}
-          >
-            {item.label}
-          </StyledButton>
-        );
-      })}
+      <div className={styles.fieldsList}>
+        {gridStyleFields.map((item, index) => {
+          const fieldName = year === 2025 ? "fieldName2025" : "fieldName2021";
+          const isActive = curGridStyleField === item[fieldName];
+          return (
+            <StyledButton
+              variant="text"
+              name={index}
+              className={isActive && styles.activeOption}
+              onClick={toggleField}
+              key={index}
+            >
+              {item.label}
+            </StyledButton>
+          );
+        })}
+      </div>
     </div>
   );
 };

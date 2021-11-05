@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  selectedCategory: "",
+  selectedCategory: "schools",
   gridStyleField: {
     fieldName2021: "live_humans_2021",
     fieldName2025: "live_humans_2025",
   },
   visible: {
-    schools: false,
+    schools: true,
     grid: true,
   },
   hide800mGrid: false,

@@ -30,21 +30,21 @@ export const gridStyleFields = [
   {
     fieldName2021: "live_humans_2021",
     fieldName2025: "live_humans_2025",
-    label: "Численность проживающего населения",
+    label: "численность проживающего населения",
   },
   {
     fieldName2021: "work_humans",
     fieldName2025: "work_humans",
-    label: "Численность работающего населения",
+    label: "численность работающего населения",
   },
   {
     fieldName2021: "potreb_2021",
     fieldName2025: "potreb_2025",
-    label: "Потребность населения в дополнительных местах",
+    label: "потребность населения в дополнительных местах",
   },
   {
     fieldName2021: "optima",
     fieldName2025: "optima",
-    label: "Потенциал размещения новых объектов",
+    label: "потенциал размещения новых объектов",
   },
 ];

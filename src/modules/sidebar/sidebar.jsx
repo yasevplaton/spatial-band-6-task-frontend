@@ -10,12 +10,10 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import {
   get800mFlag,
-  getGridStyleField,
   getMinOptimaValue,
   getSelectedCategory,
   getVisible,
   getYear,
-  hasGridStyleFieldTimestamp,
 } from "../../root-slice/root-selectors";
 import {
   setCategory,
@@ -29,19 +27,17 @@ import { Slider } from "../../components/slider";
 import { useCallback } from "react";
 import { StyledFormControlLabel } from "../../components/form-controls";
 import { Switch } from "../../components/switch";
-import { useGetOptimaRange } from "../../api/grid";
+import { useGetGridStat } from "../../api/grid";
 import { useDebouncedCallback } from "use-debounce";
 
 export const Sidebar = () => {
   const selectedCategory = useSelector(getSelectedCategory);
-  const hasTimestamp = useSelector(hasGridStyleFieldTimestamp);
   const schoolsVisible = useSelector(getVisible("schools"));
   const flag800m = useSelector(get800mFlag);
   const year = useSelector(getYear);
   const minOptimaValue = useSelector(getMinOptimaValue);
-  const gridStyleField = useSelector(getGridStyleField);
 
-  const { data: optimaRange } = useGetOptimaRange(!!selectedCategory);
+  const { data: gridStat } = useGetGridStat(!!selectedCategory);
   const dispatch = useDispatch();
 
   const handleSelectChange = (event) => {
@@ -115,16 +111,19 @@ export const Sidebar = () => {
             </div>
           </div>
           <div>
-            {optimaRange && (
+            {gridStat && (
               <Slider
-                title="Фильтр потенциала"
-                min={optimaRange[0]}
-                max={optimaRange[1]}
+                title="Фильтр потенциала (мест)"
+                min={gridStat.optima[0]}
+                max={gridStat.optima[1]}
                 step={1}
                 value={minOptimaValue}
-                marks={{ 0: optimaRange[0], [optimaRange[1]]: optimaRange[1] }}
+                marks={{
+                  0: gridStat.optima[0],
+                  [minOptimaValue]: minOptimaValue,
+                  [gridStat.optima[1]]: gridStat.optima[1],
+                }}
                 onChange={handleOptimaSliderChange}
-                disabled={gridStyleField !== "optima"}
               />
             )}
           </div>
@@ -137,7 +136,7 @@ export const Sidebar = () => {
               value={year}
               marks={{ 2021: 2021, 2025: 2025 }}
               onChange={handleTimeSliderChange}
-              disabled={!hasTimestamp}
+              trackStyle={{ background: "none" }}
             />
           </div>
         </div>

@@ -14,6 +14,18 @@ export const DEFAULT_GRID_STYLE = {
   fillOpacity: 0.9,
 };
 
+export const schoolLoadColors = {
+  low: "green",
+  middle: "orange",
+  high: "red",
+};
+export const schoolLoadColorRange = [
+  schoolLoadColors.low,
+  schoolLoadColors.low,
+  schoolLoadColors.middle,
+  schoolLoadColors.high,
+];
+
 export const gridColorMap = {
   live_humans_2021: ["white", "red"],
   live_humans_2025: ["white", "red"],

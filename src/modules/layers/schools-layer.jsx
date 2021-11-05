@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { withLoading } from "../withLoading";
 import { useSelector } from "react-redux";
 import { getSelectedCategory, getYear } from "../../root-slice/root-selectors";
-import { GeoJSON } from "../../components/geojson";
+import { GeoJSON } from "react-leaflet";
 import * as L from "leaflet";
 import { DEFAULT_MARKER_STYLE } from "../../config/styles";
 import * as ReactDOMServer from "react-dom/server";
@@ -39,13 +39,15 @@ export const SchoolsLayer = () => {
     layer.bindPopup(popupContent);
   }, []);
 
+  const schoolLayerKey = `schools-${year}`;
+
   return (
     <AsyncSchools
       data={data}
       status={status}
       pointToLayer={pointToLayer}
       onEachFeature={onEachFeature}
-      key="schools"
+      key={schoolLayerKey}
     />
   );
 };
