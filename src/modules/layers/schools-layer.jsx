@@ -19,11 +19,14 @@ export const SchoolsLayer = () => {
 
   const pointToLayer = useCallback(
     (feature, latlng) => {
+      const hide2025 = year === 2021 && feature.properties.year === 2025;
       return L.circleMarker(latlng, {
         ...DEFAULT_MARKER_STYLE,
         fillColor: colorScale(
           feature.properties[year === 2021 ? "nagruzka" : "nagruzka_2025year"]
         ),
+        fillOpacity: hide2025 ? 0 : 1,
+        opacity: hide2025 ? 0 : 1,
         radius: 5,
       });
     },
