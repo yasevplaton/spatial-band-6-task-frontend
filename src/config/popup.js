@@ -58,7 +58,7 @@ export const gridFeatureInfo = {
     },
     {
       fieldName: "share_buil",
-      label: "Плотность застройки, усл. ед.",
+      label: "Доля застроенной территории",
     },
     {
       fieldName: "transport",

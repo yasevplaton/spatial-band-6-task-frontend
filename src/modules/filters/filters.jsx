@@ -90,7 +90,7 @@ export const Filters = () => {
       <div>
         {gridStat && (
           <Slider
-            title="Плотность застройки (усл. ед.)"
+            title="Доля застроенной территории"
             min={gridStat.share_buil[0]}
             max={gridStat.share_buil[1]}
             step={0.1}

@@ -40,7 +40,7 @@ export const gridStyleFields = [
   {
     fieldName2021: "share_buil",
     fieldName2025: "share_buil",
-    label: "плотность застройки",
+    label: "доля застроенной территории",
   },
   {
     fieldName2021: "transport",
