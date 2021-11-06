@@ -8,6 +8,7 @@ export const SliderComponent = ({
   max,
   value,
   step,
+  startPoint = min,
   marks,
   onChange,
   trackStyle = {},
@@ -22,7 +23,7 @@ export const SliderComponent = ({
         step={step}
         marks={marks}
         onChange={onChange}
-        startPoint={max}
+        startPoint={startPoint}
         trackStyle={trackStyle}
       />
     </div>

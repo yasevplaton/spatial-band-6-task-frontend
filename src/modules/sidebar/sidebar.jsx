@@ -9,59 +9,37 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  get800mFlag,
-  getMinOptimaValue,
   getSelectedCategory,
   getVisible,
-  getYear,
 } from "../../root-slice/root-selectors";
-import {
-  setCategory,
-  setMinOptimaValue,
-  setYear,
-  toggle800m,
-  toggleVisibility,
-} from "../../root-slice/root-slice";
+import { setCategory, toggleVisibility } from "../../root-slice/root-slice";
 import { GridStyleOptions } from "./grid-style-options";
-import { Slider } from "../../components/slider";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { StyledFormControlLabel } from "../../components/form-controls";
-import { Switch } from "../../components/switch";
-import { useGetGridStat } from "../../api/grid";
-import { useDebouncedCallback } from "use-debounce";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+} from "../../components/accordion";
+import { Filters } from "../filters";
 
 export const Sidebar = () => {
+  const [filtersVisible, setFiltersVisible] = useState(false);
+
+  const toggleFiltersVisible = useCallback(() => {
+    setFiltersVisible(!filtersVisible);
+  }, [filtersVisible]);
+
   const selectedCategory = useSelector(getSelectedCategory);
   const schoolsVisible = useSelector(getVisible("schools"));
-  const flag800m = useSelector(get800mFlag);
-  const year = useSelector(getYear);
-  const minOptimaValue = useSelector(getMinOptimaValue);
-
-  const { data: gridStat } = useGetGridStat(!!selectedCategory);
   const dispatch = useDispatch();
-
-  const handleSelectChange = (event) => {
-    dispatch(setCategory(event.target.value));
-  };
-
-  const handleTimeSliderChange = useCallback(
-    (value) => {
-      dispatch(setYear(value));
-    },
-    [dispatch]
-  );
-
-  const handleOptimaSliderChange = useDebouncedCallback((value) => {
-    dispatch(setMinOptimaValue(value));
-  }, 300);
 
   const changeSchoolsVisibility = useCallback(() => {
     dispatch(toggleVisibility("schools"));
   }, [dispatch]);
-
-  const change800mFlag = useCallback(() => {
-    dispatch(toggle800m());
-  }, [dispatch]);
+  const handleSelectChange = (event) => {
+    dispatch(setCategory(event.target.value));
+  };
 
   return (
     <div className={styles.container}>
@@ -98,47 +76,17 @@ export const Sidebar = () => {
           <Divider style={{ paddingTop: "0.5rem" }} />
           <GridStyleOptions />
           <Divider style={{ paddingTop: "0.5rem" }} />
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              paddingTop: "0.5rem",
-            }}
-          >
-            <Switch checked={flag800m} onChange={change800mFlag} />
-            <div style={{ fontSize: "12px" }}>
-              Показать только участки за пределами 800 м от школы
-            </div>
-          </div>
-          <div>
-            {gridStat && (
-              <Slider
-                title="Фильтр потенциала (мест)"
-                min={gridStat.optima[0]}
-                max={gridStat.optima[1]}
-                step={1}
-                value={minOptimaValue}
-                marks={{
-                  0: gridStat.optima[0],
-                  [minOptimaValue]: minOptimaValue,
-                  [gridStat.optima[1]]: gridStat.optima[1],
-                }}
-                onChange={handleOptimaSliderChange}
-              />
-            )}
-          </div>
-          <div>
-            <Slider
-              title="Год отображения данных"
-              min={2021}
-              max={2025}
-              step={null}
-              value={year}
-              marks={{ 2021: 2021, 2025: 2025 }}
-              onChange={handleTimeSliderChange}
-              trackStyle={{ background: "none" }}
-            />
-          </div>
+          <Accordion expanded={filtersVisible} onChange={toggleFiltersVisible}>
+            <AccordionSummary
+              aria-controls="filters-content"
+              id="filters-header"
+            >
+              Настройки
+            </AccordionSummary>
+            <AccordionDetails>
+              <Filters />
+            </AccordionDetails>
+          </Accordion>
         </div>
       )}
     </div>

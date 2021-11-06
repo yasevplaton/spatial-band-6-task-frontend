@@ -13,6 +13,9 @@ const initialState = {
   hide800mGrid: false,
   year: 2021,
   minOptimaValue: 0,
+  maxDensityValue: 4.9,
+  minTransportValue: 0,
+  showModal: true,
 };
 
 export const rootSlice = createSlice({
@@ -43,6 +46,24 @@ export const rootSlice = createSlice({
       state.minOptimaValue = payload;
     },
 
+    setMaxDensityValue: (state, action) => {
+      const { payload } = action;
+
+      state.maxDensityValue = payload;
+    },
+
+    setMinTransportValue: (state, action) => {
+      const { payload } = action;
+
+      state.minTransportValue = payload;
+    },
+
+    setShowModal: (state, action) => {
+      const { payload } = action;
+
+      state.showModal = payload;
+    },
+
     toggleVisibility: (state, action) => {
       const { payload } = action;
 
@@ -62,6 +83,9 @@ export const {
   toggleVisibility,
   toggle800m,
   setMinOptimaValue,
+  setMaxDensityValue,
+  setMinTransportValue,
+  setShowModal,
 } = rootSlice.actions;
 
 export const rootReducer = rootSlice.reducer;

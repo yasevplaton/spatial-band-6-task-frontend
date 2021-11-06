@@ -32,5 +32,7 @@ export const gridColorMap = {
   work_humans: ["green", "yellow"],
   potreb_2021: ["white", "blue"],
   potreb_2025: ["white", "blue"],
-  optima: ["#eb34de", "#f4f728"],
+  new_school: ["#eb34de", "#f4f728"],
+  share_buil: ["white", "#4c34eb"],
+  transport: ["white", "#e134eb"],
 };

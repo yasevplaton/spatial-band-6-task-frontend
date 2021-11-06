@@ -28,3 +28,18 @@ export const getMinOptimaValue = createSelector(
   getRootState,
   (state) => state.minOptimaValue
 );
+
+export const getMaxDensityValue = createSelector(
+  getRootState,
+  (state) => state.maxDensityValue
+);
+
+export const getMinTransportValue = createSelector(
+  getRootState,
+  (state) => state.minTransportValue
+);
+
+export const getShowModal = createSelector(
+  getRootState,
+  (state) => state.showModal
+);

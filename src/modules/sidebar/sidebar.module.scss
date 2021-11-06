@@ -2,11 +2,13 @@
   position: absolute;
   right: 10px;
   top: 10px;
-  z-index: 1000;
+  z-index: 500;
   border-radius: 8px;
   background-color: rgba(white, 0.9);
   padding: 1rem;
   max-width: 200px;
+  max-height: 700px;
+  overflow: auto;
 }
 
 .label {

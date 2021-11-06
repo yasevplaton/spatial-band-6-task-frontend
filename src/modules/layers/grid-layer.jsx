@@ -2,7 +2,9 @@ import { useSelector } from "react-redux";
 import {
   get800mFlag,
   getGridStyleField,
+  getMaxDensityValue,
   getMinOptimaValue,
+  getMinTransportValue,
   getSelectedCategory,
 } from "../../root-slice/root-selectors";
 import { useGetGridStat } from "../../api/grid";
@@ -22,6 +24,8 @@ export const GridLayer = () => {
   const gridStyleField = useSelector(getGridStyleField);
   const flag800m = useSelector(get800mFlag);
   const minOptimaValue = useSelector(getMinOptimaValue);
+  const minTransportValue = useSelector(getMinTransportValue);
+  const maxDensityValue = useSelector(getMaxDensityValue);
 
   const { data: gridStat, status } = useGetGridStat(!!category);
 
@@ -52,8 +56,15 @@ export const GridLayer = () => {
 
           const isNull = properties[gridStyleField] === 0;
           const showOnlyFarFromSchool = flag800m && properties.school;
-          const optimaLessThanMin = properties.optima < minOptimaValue;
-          const hidePoly = isNull || showOnlyFarFromSchool || optimaLessThanMin;
+          const optimaLessThanMin = properties.new_school < minOptimaValue;
+          const transportLessThanMin = properties.transport < minTransportValue;
+          const densityMoreThanMax = properties.share_buil > maxDensityValue;
+          const hidePoly =
+            isNull ||
+            showOnlyFarFromSchool ||
+            optimaLessThanMin ||
+            transportLessThanMin ||
+            densityMoreThanMax;
 
           return {
             ...DEFAULT_GRID_STYLE,
@@ -69,9 +80,16 @@ export const GridLayer = () => {
           <Popup feature={feature} config={gridFeatureInfo} />
         ),
     };
-  }, [gridStat, gridStyleField, flag800m, minOptimaValue]);
+  }, [
+    gridStat,
+    gridStyleField,
+    flag800m,
+    minOptimaValue,
+    maxDensityValue,
+    minTransportValue,
+  ]);
 
-  const gridLayerKey = `${gridStat}-${gridStyleField}-${flag800m}-${minOptimaValue}`;
+  const gridLayerKey = `${gridStat}-${gridStyleField}-${flag800m}-${minOptimaValue}-${minTransportValue}-${maxDensityValue}`;
 
   return <AsyncGrid status={status} {...options} key={gridLayerKey} />;
 };

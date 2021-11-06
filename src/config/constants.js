@@ -38,13 +38,23 @@ export const gridStyleFields = [
     label: "численность работающего населения",
   },
   {
+    fieldName2021: "share_buil",
+    fieldName2025: "share_buil",
+    label: "плотность застройки",
+  },
+  {
+    fieldName2021: "transport",
+    fieldName2025: "transport",
+    label: "транспортная доступность",
+  },
+  {
     fieldName2021: "potreb_2021",
     fieldName2025: "potreb_2025",
     label: "потребность населения в дополнительных местах",
   },
   {
-    fieldName2021: "optima",
-    fieldName2025: "optima",
+    fieldName2021: "new_school",
+    fieldName2025: "new_school",
     label: "потенциал размещения новых объектов",
   },
 ];

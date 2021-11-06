@@ -57,6 +57,14 @@ export const gridFeatureInfo = {
       label: "Число работающих, чел",
     },
     {
+      fieldName: "share_buil",
+      label: "Плотность застройки, усл. ед.",
+    },
+    {
+      fieldName: "transport",
+      label: "Транспортная доступность, усл. ед.",
+    },
+    {
       fieldName: "potreb_2021",
       label: "Потребность в дополнительных местах (2021), мест",
     },
@@ -65,7 +73,7 @@ export const gridFeatureInfo = {
       label: "Потребность в дополнительных местах (2025), мест",
     },
     {
-      fieldName: "optima",
+      fieldName: "new_school",
       label: "Потенциал размещения новых объектов, мест",
     },
   ],
