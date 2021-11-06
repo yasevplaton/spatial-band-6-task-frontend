@@ -15,7 +15,9 @@ const AsyncSchools = withLoading(GeoJSON);
 export const SchoolsLayer = () => {
   const selectedCategory = useSelector(getSelectedCategory);
   const year = useSelector(getYear);
-  const { data, status, colorScale } = useSchoolData(!!selectedCategory);
+  const { data, status, radiusScale, colorScale } = useSchoolData(
+    !!selectedCategory
+  );
 
   const pointToLayer = useCallback(
     (feature, latlng) => {
@@ -27,10 +29,10 @@ export const SchoolsLayer = () => {
         ),
         fillOpacity: hide2025 ? 0 : 1,
         opacity: hide2025 ? 0 : 1,
-        radius: 5,
+        radius: radiusScale(feature.properties.pupils_cnt),
       });
     },
-    [colorScale, year]
+    [colorScale, year, radiusScale]
   );
 
   const onEachFeature = useCallback((feature, layer) => {

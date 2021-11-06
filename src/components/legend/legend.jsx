@@ -53,6 +53,12 @@ export const Legend = () => {
               </div>
             </div>
           </div>
+          <div
+            className={styles.colorRampLabel}
+            style={{ textAlign: "center", marginTop: "0.5rem" }}
+          >
+            Размер значка соответствует количеству учеников
+          </div>
         </div>
       )}
 

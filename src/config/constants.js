@@ -12,7 +12,7 @@ export const QUERY_KEYS = {
 
 export const days = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
-export const schoolRadiusRange = [5, 5];
+export const schoolRadiusRange = [4, 15];
 
 export const schoolLoadColors = {
   low: "green",
