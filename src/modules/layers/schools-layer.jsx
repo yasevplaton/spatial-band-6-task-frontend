@@ -27,8 +27,8 @@ export const SchoolsLayer = () => {
         fillColor: colorScale(
           feature.properties[year === 2021 ? "nagruzka" : "nagruzka_2025year"]
         ),
-        fillOpacity: hide2025 ? 0 : 1,
-        opacity: hide2025 ? 0 : 1,
+        fillOpacity: hide2025 ? 0 : 0.8,
+        opacity: hide2025 ? 0 : 0.5,
         radius: radiusScale(feature.properties.pupils_cnt),
       });
     },
