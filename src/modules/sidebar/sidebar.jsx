@@ -3,9 +3,11 @@ import {
   Checkbox,
   Divider,
   FormControl,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
+  Tooltip,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -22,6 +24,8 @@ import {
   AccordionSummary,
 } from "../../components/accordion";
 import { Filters } from "../filters";
+import HelpIcon from "@mui/icons-material/Help";
+import { settingsHelp } from "../../config/constants";
 
 export const Sidebar = () => {
   const [filtersVisible, setFiltersVisible] = useState(false);
@@ -82,6 +86,14 @@ export const Sidebar = () => {
               id="filters-header"
             >
               Настройки
+              <Tooltip title={settingsHelp} placement={"top"}>
+                <IconButton size={"small"}>
+                  <HelpIcon
+                    fontSize={"small"}
+                    style={{ fill: "rgba(0, 0, 0, 0.1)" }}
+                  />
+                </IconButton>
+              </Tooltip>
             </AccordionSummary>
             <AccordionDetails>
               <Filters />

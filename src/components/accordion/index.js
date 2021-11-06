@@ -20,6 +20,7 @@ export const AccordionSummary = styled((props) => (
     {...props}
   />
 ))(() => ({
+  paddingRight: "0.5rem",
   backgroundColor: "none",
   flexDirection: "row-reverse",
   textTransform: "uppercase",
@@ -31,6 +32,9 @@ export const AccordionSummary = styled((props) => (
   },
   "& .MuiAccordionSummary-content": {
     marginLeft: "0.5rem",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
 }));
 
