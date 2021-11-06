@@ -7,6 +7,9 @@ import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getShowModal } from "../../root-slice/root-selectors";
 import { setShowModal } from "../../root-slice/root-slice";
+import { Button } from "@mui/material";
+import { useGetSchools } from "../../api";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const style = {
   position: "absolute",
@@ -18,10 +21,12 @@ const style = {
   boxShadow: 24,
   p: 4,
   borderRadius: "4px",
+  outline: "none",
 };
 
 export const ModalComponent = () => {
   const open = useSelector(getShowModal);
+  const { isLoading } = useGetSchools();
   const dispatch = useDispatch();
 
   const handleClose = useCallback(
@@ -45,8 +50,44 @@ export const ModalComponent = () => {
         <Fade in={open}>
           <Box sx={style}>
             <div>
-              Добро пожаловать! Скоро здесь будет инструкция по работе с
-              приложением
+              <p style={{ textAlign: "center" }}>Добро пожаловать!</p>
+              <p>
+                Рады, что вы узнали о нашем сервисе. Здесь вы можете определить,
+                где в Москве оптимально строить школы. Прежде всего, стоит
+                обратить внимание на <b> существующие школы</b> - у нас на карте
+                они различаются по цвету и размеру. Цвет показывает нагрузку на
+                школу в текущий момент, а размер отвечает за количество
+                учеников. Далее просим отметить яркую <b> тепловую карту</b> со
+                множеством показателей, которые помогут не потеряться в море
+                факторов. Переключаясь между ними, вы сможете с легкостью
+                оценить обстановку в городе. Основной показатель, который
+                обязательно нужно принять во внимание -
+                <b> потенциал размещения новых объектов</b>. Он позволяет не
+                только визуально выделить места, где не хватает школ, но также
+                оценить масштаб необходимого строительства, требующегося для
+                стабилизации дефицита. По сути, потенциал отвечает на главный
+                вопрос - где нужно строить школы и каких размеров, причем
+                <b> с учетом изменения спроса в будущем</b>. С помощью
+                <b> гибкой настройки отображения</b> вы сможете отобрать районы,
+                размещение школы в которых будет максимально эффективно, и
+                значительно сузить поиск оптимальной площадки для строительства.
+              </p>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {isLoading ? (
+                  <CircularProgress color="secondary" />
+                ) : (
+                  <Button variant="text" onClick={handleClose}>
+                    Найти место для школы
+                  </Button>
+                )}
+              </div>
             </div>
           </Box>
         </Fade>
