@@ -27,12 +27,12 @@ export const schoolLoadColorRange = [
 ];
 
 export const gridColorMap = {
-  live_humans_2021: ["white", "red"],
-  live_humans_2025: ["white", "red"],
+  live_humans_2021: ["#fdffe6", "#8f3714"],
+  live_humans_2025: ["#fdffe6", "#8f3714"],
   work_humans: ["green", "yellow"],
-  potreb_2021: ["white", "blue"],
-  potreb_2025: ["white", "blue"],
+  potreb_2021: ["white", "#ed4f00"],
+  potreb_2025: ["white", "#ed4f00"],
   new_school: ["#eb34de", "#f4f728"],
-  share_buil: ["white", "#4c34eb"],
+  share_buil: ["white", "red"],
   transport: ["white", "#e134eb"],
 };

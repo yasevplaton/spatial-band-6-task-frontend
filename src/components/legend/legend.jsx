@@ -39,14 +39,18 @@ export const Legend = () => {
           </div>
           <div className={styles.colorRampContainer}>
             <div className={styles.colorRampContent}>
-              <div className={styles.colorRampLabel}>до 100</div>
               <div
                 className={styles.colorRamp}
                 style={{
                   background: `linear-gradient(90deg, green, orange, red)`,
                 }}
               />
-              <div className={styles.colorRampLabel}>{schoolLoadRange[3]}</div>
+              <div className={styles.colorRampLabelContainer}>
+                <div className={styles.colorRampLabel}>до 100</div>
+                <div className={styles.colorRampLabel}>
+                  {schoolLoadRange[3]}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -59,17 +63,19 @@ export const Legend = () => {
           </div>
           <div className={styles.colorRampContainer}>
             <div className={styles.colorRampContent}>
-              <div className={styles.colorRampLabel}>
-                {gridStat[curGridStyleField][0]}
-              </div>
               <div
                 className={styles.colorRamp}
                 style={{
                   background: `linear-gradient(90deg, ${gridColorMap[curGridStyleField][0]}, ${gridColorMap[curGridStyleField][1]})`,
                 }}
               />
-              <div className={styles.colorRampLabel}>
-                {gridStat[curGridStyleField][1]}
+              <div className={styles.colorRampLabelContainer}>
+                <div className={styles.colorRampLabel}>
+                  {gridStat[curGridStyleField][0]}
+                </div>
+                <div className={styles.colorRampLabel}>
+                  {gridStat[curGridStyleField][1]}
+                </div>
               </div>
             </div>
           </div>

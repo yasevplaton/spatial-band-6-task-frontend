@@ -111,6 +111,7 @@ export const Filters = () => {
             min={gridStat.transport[0]}
             max={gridStat.transport[1]}
             step={1}
+            startPoint={gridStat.transport[1]}
             value={minTransportValue}
             marks={{
               0: gridStat.transport[0],

@@ -6,7 +6,7 @@
   bottom: 10px;
   left: 10px;
   z-index: 1000;
-  width: 300px;
+  width:200px;
 }
 
 .legendBlockContainer {
@@ -31,9 +31,12 @@
   text-align: center;
 }
 
-.colorRampContent {
+.colorRampLabelContainer {
+  width: 200px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin: 0 4px 0 4px;
 }
 
 .colorRampLabel,

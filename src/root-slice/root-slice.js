@@ -13,7 +13,7 @@ const initialState = {
   hide800mGrid: false,
   year: 2021,
   minOptimaValue: 0,
-  maxDensityValue: 4.9,
+  maxDensityValue: 1,
   minTransportValue: 0,
   showModal: true,
 };
