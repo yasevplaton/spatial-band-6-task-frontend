@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "https://social.ru.com/api";
+const API_URL = "https://api.spatiality.endwork.today/";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
