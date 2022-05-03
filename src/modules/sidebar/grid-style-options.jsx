@@ -58,7 +58,7 @@ export const GridStyleOptions = () => {
           const fieldName = year === 2025 ? "fieldName2025" : "fieldName2021";
           const isActive = curGridStyleField === item[fieldName];
           return (
-            <div className={styles.itemContainer}>
+            <div className={styles.itemContainer} key={index}>
               <StyledButton
                 variant="text"
                 name={index}
@@ -68,7 +68,6 @@ export const GridStyleOptions = () => {
                   flexBasis: item.help ? "80%" : "100%",
                   justifyContent: "flex-start",
                 }}
-                key={index}
               >
                 {item.label}
               </StyledButton>
