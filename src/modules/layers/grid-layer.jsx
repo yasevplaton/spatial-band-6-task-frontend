@@ -33,7 +33,7 @@ export const GridLayer = () => {
     if (!gridStat) {
       return {
         type: "protobuf",
-        url: "https://social.ru.com/public.service_poly/{z}/{x}/{y}.pbf",
+        url: "https://apipbf.spatiality.endwork.today/public.service_poly/{z}/{x}/{y}.pbf",
         interactive: true,
         vectorTileLayerStyles: {
           "public.service_poly": {
@@ -45,7 +45,7 @@ export const GridLayer = () => {
 
     return {
       type: "protobuf",
-      url: "https://social.ru.com/public.service_poly/{z}/{x}/{y}.pbf",
+      url: "https://apipbf.spatiality.endwork.today/public.service_poly/{z}/{x}/{y}.pbf",
       interactive: true,
       vectorTileLayerStyles: {
         "public.service_poly": function (properties) {
